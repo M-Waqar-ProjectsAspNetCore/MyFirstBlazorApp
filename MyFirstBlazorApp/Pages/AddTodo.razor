@@ -1,0 +1,18 @@
+﻿<h3>AddTodo</h3>
+
+<input type="text" @bind="@Item" />
+<button @onclick="@HandleClick" class="btn btn-primary">Add</button>
+
+@code {
+    [Parameter]
+    public EventCallback<string> AddMethod { get; set; }
+
+    public string Item = string.Empty;
+
+
+    public void HandleClick()
+    {
+        AddMethod.InvokeAsync(Item);
+        Item = string.Empty;
+    }
+}

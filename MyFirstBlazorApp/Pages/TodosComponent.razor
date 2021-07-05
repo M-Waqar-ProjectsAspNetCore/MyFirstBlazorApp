@@ -1,0 +1,13 @@
+﻿<h3>Todo List</h3>
+
+<ul>
+    @foreach (string todo in Todos)
+    {
+        <li>@todo</li>
+    }
+</ul>
+
+@code {
+    [Parameter]
+    public List<string> Todos { get; set; }
+}

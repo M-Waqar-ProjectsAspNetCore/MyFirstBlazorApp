@@ -1,0 +1,12 @@
+﻿<h3 style="@headingStyle @BoarderStyle">Cascade Child Component - Counter Value: @Count</h3>
+
+<CascadeGrandChild></CascadeGrandChild>
+
+@code {
+    [CascadingParameter(Name ="Color")]
+    public string headingStyle { get; set; }
+    [CascadingParameter]
+    public int Count { get; set; }
+    [CascadingParameter(Name = "Border")]
+    public string BoarderStyle { get; set; }
+}

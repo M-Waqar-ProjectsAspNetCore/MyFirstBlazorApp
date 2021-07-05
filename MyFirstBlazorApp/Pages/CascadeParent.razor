@@ -1,0 +1,24 @@
+﻿@page "/pc"
+
+<input type="button" @onclick="@CounterClick" class="btn btn-primary btn-block" value="Increment Counter" />
+<br />
+<h3 style="@Style">Cascade Parent Component - Counter Value: @Counter</h3>
+<br />
+<CascadingValue Value="@Style" Name="Color" IsFixed="true">
+    <CascadingValue Value="@Counter" IsFixed="false">
+        <CascadingValue Value="@Border" Name="Border" IsFixed="true">
+            <CascadeChildren></CascadeChildren>
+        </CascadingValue>
+    </CascadingValue>
+</CascadingValue>
+
+@code {
+    public string Style = "color:red;";
+    public string Border = "border: 2px solid red;";
+    public int Counter = 0;
+
+    private void CounterClick()
+    {
+        Counter++;
+    }
+}

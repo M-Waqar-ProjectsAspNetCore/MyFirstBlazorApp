@@ -1,0 +1,29 @@
+﻿@page "/binding"
+
+<h3>Two Way Data Binding</h3>
+<div>
+    <label>Enter Description:</label>
+<textarea class="form-control" @bind="@Description" @bind:event="oninput"></textarea>
+</div>
+<div>
+    Description is : @Description
+</div>
+<div>
+    Description Length is : @Description.Length
+</div>
+<hr />
+<h2> Two Way Data Binding Again</h2>
+<div>
+    <label>Write Message</label>
+    <textarea class="form-control" @bind="Message" @bind:event="oninput"></textarea>
+</div>
+
+<div>
+    <h5>Description is : @Message</h5>
+    <h5>Description Length is : @Message.Length</h5>
+</div>
+
+@code {
+    public string Description = string.Empty;
+    public string Message { get; set; } = string.Empty;
+}

@@ -1,0 +1,45 @@
+﻿@page "/databinding"
+@inherits DataBindingBase
+
+<h3>Data Binding Examples</h3>
+<hr />
+<h4>One Way Data Binding</h4>
+<br />
+<div>
+    <h6>Name : @Name</h6>
+    <h6>Name With Salutation: @(Gender == "MALE" ? $"Mr. {Name}" : $"Mrs. {Name}" )</h6>
+</div>
+<div>
+    <input type="text" value="@Name" />
+</div>
+<hr />
+<h4>Two Way Data Binding</h4>
+<br />
+<div>
+    <label>Using the Event (onChange)</label>
+    <input type="text" value="@Name" @onchange="@(e => { Name = e.Value.ToString(); })" />
+</div>
+<br />
+<div>
+    <div>
+        Bind Property Work on Change Event, when focus lost then value is changed.
+    </div>
+    <label>Using the bind Property</label>
+    <input type="text" @bind="@Name" />
+
+</div>
+<br />
+<div>
+    <label>Using the bind Property and bind event i.e. bind:event</label>
+    <input type="text" @bind="@Name" @bind:event="oninput" />
+</div>
+<br />
+<div>Two Way Binding With Color Example</div>
+<div>
+    <label>Color</label>
+    <input type="text" @bind="@Color" />
+</div>
+<div @bind-style="Color" @bind-style:event="onchange">
+    This is div and color changed based on color in input field.
+</div>
+

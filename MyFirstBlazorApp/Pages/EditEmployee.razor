@@ -1,0 +1,67 @@
+﻿@page "/editemployee/{id}"
+@page "/editemployee"
+@inherits EditEmployeeBase
+@using EmployeeManagement.Models
+
+<EditForm Model="@Employee" OnValidSubmit="HandleSubmit">
+    <DataAnnotationsValidator />
+    <h3>@PageText Employee</h3>
+    <hr />
+    <ValidationSummary />
+    <div class="form-group row">
+        <lable class="col-sm-2">First Name</lable>
+        <div class="col-sm-10">
+            <InputText class="form-control" @bind-Value="Employee.FirstName" />
+            <ValidationMessage For="@(() => Employee.FirstName)" />
+        </div>
+    </div>
+    <div class="form-group row">
+        <lable class="col-sm-2">Last Name</lable>
+        <div class="col-sm-10">
+            <InputText class="form-control" @bind-Value="Employee.LastName" />
+            <ValidationMessage For="@(() => Employee.LastName)" />
+        </div>
+    </div>
+    <div class="form-group row">
+        <lable class="col-sm-2">Email</lable>
+        <div class="col-sm-10">
+            <InputText class="form-control" @bind-Value="Employee.Email" />
+            <ValidationMessage For="@(() => Employee.Email)" />
+        </div>
+    </div>
+    <div class="form-group row">
+        <lable class="col-sm-2">Department Name</lable>
+        <div class="col-sm-10">
+            <InputSelect class="form-control" @bind-Value="DepartmentId">
+                <option value="">Select Department</option>
+                @foreach (var dept in Departments)
+                {
+                    <option value="@dept.DepartmentId">@dept.DepartmentName</option>
+                }
+            </InputSelect>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="col-sm-2">Gender</label>
+        <div class="col-sm-10">
+            <InputSelect class="form-control" @bind-Value="Employee.Gender">
+                @foreach (var gender in Enum.GetValues(typeof(Gender)))
+                {
+                    <option value="@gender">@gender</option>
+                }
+            </InputSelect>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="col-sm-2">Date of Birth</label>
+        <div class="col-sm-10">
+            <InputDate class="form-control" @bind-Value="Employee.DateOfBrith" />
+        </div>
+    </div>
+    <button class="btn btn-primary" type="submit">@PageText Employee</button>
+    @if (Employee.EmployeeId > 0)
+    {
+        <button class="btn btn-danger" type="button" @onclick="@DeleteClick">Delete Employee</button>
+    }
+</EditForm>
+

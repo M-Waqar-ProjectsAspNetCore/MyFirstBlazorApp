@@ -1,0 +1,36 @@
+﻿@page "/dynamic"
+
+<h3>Our First Dynamic Component</h3>
+
+<br />
+<br />
+
+<button class="btn btn-primary" @onclick="BlazorServerClick">Blazor Server</button>
+<button class="btn btn-primary" @onclick="BlazorWebAssemblyClick">Blazor Web Assembly</button>
+
+<br />
+<br />
+
+<h3>@title</h3>
+<div>
+    @content
+</div>
+
+@code {
+
+    public string title;
+    public string content;
+
+    public void BlazorServerClick()
+    {
+        title = "Blazor Server";
+        content = "Blazor server generates the dynamic content on the server and send the content to the browser through the signalR channel that is established between the page in the browser and the server.";
+
+    }
+    public void BlazorWebAssemblyClick()
+    {
+        title = "Blazor Web Assembly";
+        content = "Blazor Web Assembly runs completely in the browser and generates the dynamic contents directly at the front end.";
+    }
+
+}

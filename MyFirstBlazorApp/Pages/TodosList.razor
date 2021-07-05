@@ -1,0 +1,17 @@
+﻿@page "/todos"
+
+<h3>TodosList</h3>
+
+<AddTodo AddMethod="@AddTodo" />
+
+<TodosComponent Todos="todos" />
+
+@code {
+    List<string> todos = new List<string>();
+
+    public void AddTodo(string item)
+    {
+        todos.Add(item);
+        item = string.Empty;
+    }
+}

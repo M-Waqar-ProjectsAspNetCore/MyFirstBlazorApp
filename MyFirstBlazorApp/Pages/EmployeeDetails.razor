@@ -1,0 +1,36 @@
+﻿@page "/employeedetails/{Id}"
+@page "/employeedetails"
+@inherits EmployeeDetailsBase
+
+
+@if (Employee == null)
+{
+    <div class="spinner"></div>
+}
+else
+{
+    <div class="row justify-content-center m-3">
+        <div class="col-sm-8">
+            <div class="card">
+                <div class="card-header">
+                    <h1>@Employee.FirstName @Employee.LastName @Coordinates</h1>
+                </div>
+
+                <div class="card-body text-center">
+                    @*<img class="card-img-top" src="@Employee.PhotoPath" @onmousemove="@MouseMove" />*@
+                    <img class="card-img-top" src="@Employee.PhotoPath" @onmousemove="@(e => Coordinates = $"X = { e.ClientX } Y = { e.ClientY }")" />
+
+                    <h4>Employee ID : @Employee.EmployeeId</h4>
+                    <h4>Email : @Employee.Email</h4>
+                    <h4>Department : @(Employee.Department == null ? "No Department" : Employee.Department.DepartmentName)</h4>
+                    <button @onclick="@FooterButtonClick" class="btn btn-primary btn-block">@btnText</button>
+                </div>
+                <div class="card-footer text-center @CssClass">
+                    <a href="/employees" class="btn btn-primary">Back</a>
+                    <a href="@($"editemployee/{Employee.EmployeeId}")" class="btn btn-primary">Edit</a>
+                    <button class="btn btn-danger" type="button" @onclick="@DeleteClick">Delete</button>
+                </div>
+            </div>
+        </div>
+    </div>
+}
